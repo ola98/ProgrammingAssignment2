@@ -10,24 +10,24 @@
 ## > cacheSolve(Mobj)
 ##
 
-## Take a matrix and return a cacheable object with setters and getters for the matrix.
+## Take an invertible matrix and return a cacheable object with setters and getters for the matrix and it's inverse.
 
-makeCacheMatrix <- function(x = matrix()) {
-	
-    m <- NULL
-    set <- function(y) {
-	 x <<- y
-       m <<- NULL
-    }
-    get <- function() x
-    setinverse <- function(solve) m <<- solve
-    getinverse <- function() m
+makeCacheMatrix <- function(x = matrix()) {	
+    	m <- NULL
+    	set <- function(y) {
+	 	x <<- y
+       		m <<- NULL
+    	}
+    	get <- function() x
+    	setinverse <- function(solve) m <<- solve
+    	getinverse <- function() m
 
-    list(set = set, get = get, setinverse = setinverse, getinverse=getinverse)
+    	list(set = set, get = get, setinverse = setinverse, getinverse=getinverse)
 }
 
 
-## Cache inverse of matrix x if it already exists in the cache.
+## Cache inverse of matrix x if it doesn't already exists in the cache.
+## Return inverse from cache otherwise.
 
 cacheSolve <- function(x, ...) {
        m <- x$getinverse()
@@ -35,9 +35,9 @@ cacheSolve <- function(x, ...) {
 		message("getting cached data")
     		return(m)
        }
-   	 data <- x$get()
+       data <- x$get()
        m <- solve(data, ...)
        x$setinverse(m)
        m
-        ## Return a matrix that is the inverse of 'x'
+       ## Return a matrix that is the inverse of 'x'
 }
