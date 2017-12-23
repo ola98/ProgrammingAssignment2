@@ -5,9 +5,9 @@
 ## Test Case: 
 ##
 ## > M <- matrix(c(4, 2, 7, 6), 2, 2)
-## > Mobj <- mm <- makeCacheMatrix(M)
-## > cacheSolve(Mobj)
-## > cacheSolve(Mobj)
+## > Mobj <- makeCacheMatrix(M)
+## > cacheSolve(Mobj) #First call saves matrix in Cache
+## > cacheSolve(Mobj) #subsequent calls retrieves matrix from cache
 ##
 
 ## Take an invertible matrix and return a cacheable object with setters and getters for the matrix and it's inverse.
